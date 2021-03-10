@@ -110,6 +110,12 @@ class S7Impl(object):
 			raise RR.InvalidOperationException("Not streaming")
 		self._streaming=False
 
+	def setf_param(self,param_name, value):
+		if value.data[0]:
+			relay_on(self.port_dict[param_name])
+		else:
+			relay_off(self.port_dict[param_name])
+
 
 with RR.ServerNodeSetup("s7_gripper",22222) as node_setup:
 	RRC.RegisterStdRobDefServiceTypes(RRN)
