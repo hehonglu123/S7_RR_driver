@@ -89,7 +89,7 @@ class S7Impl(object):
 						self.sensor_list[0]=1
 					if self.switch.is_pressed:
 						self.sensor_list[1]=1
-					ToolState.sensor=self.sensor_list[0]
+					ToolState.sensor=self.sensor_list
 					ToolState.ts=self._date_time_util.TimeSpec3Now()
 					self.tool_state.OutValue=ToolState
 					self.state_machine.machine()
@@ -111,7 +111,7 @@ class S7Impl(object):
 		self._streaming=False
 
 	def setf_param(self,param_name, value):
-		if value.data[0]:
+		if value.data:
 			relay_on(self.port_dict[param_name])
 		else:
 			relay_off(self.port_dict[param_name])
