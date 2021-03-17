@@ -81,6 +81,7 @@ class S7Impl(object):
 	#sensor reading
 	def threadfunc(self):
 		while(self._streaming):
+			time.sleep(0.002)
 			with self._lock:
 				try:
 					ToolState=self.tool_state_type
@@ -92,10 +93,11 @@ class S7Impl(object):
 					ToolState.sensor=self.sensor_list
 					ToolState.ts=self._date_time_util.TimeSpec3Now()
 					self.tool_state.OutValue=ToolState
-					self.state_machine.machine()
+					# self.state_machine.machine()
 					# print(self.state)
 				except:
 					traceback.print_exc()
+
 				
 
 
@@ -117,7 +119,7 @@ class S7Impl(object):
 			relay_off(self.port_dict[param_name])
 
 
-with RR.ServerNodeSetup("s7_gripper",22222) as node_setup:
+with RR.ServerNodeSetup("abb_s7_gripper",22222) as node_setup:
 	RRC.RegisterStdRobDefServiceTypes(RRN)
 
 	gripper_inst=S7Impl()
