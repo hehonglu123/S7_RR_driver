@@ -95,9 +95,9 @@ class S7Impl(object):
 					if self.switch1.is_pressed:
 						self.sensor_list[1]=1
 					if self.fabric_present2.is_pressed:
-						self.sensor_list[3]=1
+						self.sensor_list[2]=1
 					if self.switch2.is_pressed:
-						self.sensor_list[4]=1
+						self.sensor_list[3]=1
 					ToolState.sensor=self.sensor_list
 					ToolState.ts=self._date_time_util.TimeSpec3Now()
 					self.tool_state.OutValue=ToolState
